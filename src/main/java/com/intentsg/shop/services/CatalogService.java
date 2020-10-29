@@ -13,4 +13,16 @@ public class CatalogService {
     public Catalog createCatalog(Catalog catalogToSave) {
         return catalogRepository.saveCatalog(catalogToSave);
     }
+
+    public Catalog deleteCatalog(Catalog catalogToDelete) {
+        return catalogRepository.delete(catalogToDelete);
+    }
+
+    public Catalog updateCatalog(Catalog catalogToUpdate){
+        return catalogRepository.update(catalogToUpdate);
+    }
+
+    public Catalog getCatalogById(Long id){
+        return catalogRepository.get(id);
+    }
 }

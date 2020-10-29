@@ -19,7 +19,6 @@ public class DefaultCatalogRepository implements CatalogRepository {
 
     @Override
     public Catalog delete(Catalog catalog) {
-        repository.remove(catalog);
         if (repository.remove(catalog))
             return catalog;
         else
