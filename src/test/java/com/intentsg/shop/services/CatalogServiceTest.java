@@ -38,7 +38,6 @@ class CatalogServiceTest {
         assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
     }
 
-
     @Test
     void testGetCatalog() {
         // Given
