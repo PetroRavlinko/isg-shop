@@ -58,13 +58,11 @@ class CatalogServiceTest {
         Catalog fakeCatalog = new Catalog();
         fakeCatalog.setId(EXPECTED_CATALOG_ID);
 
-        Catalog catalogToDelete = catalogRepository.saveCatalog(fakeCatalog);
+        given(catalogRepository.deleteCatalog(eq(fakeCatalog))).willReturn(fakeCatalog);
 
-        given(catalogRepository.delete(eq(catalogToDelete))).willReturn(fakeCatalog);
+        Catalog actualCatalog = catalogService.delete(fakeCatalog);
 
-        Catalog actualCatalog = catalogService.deleteCatalog(catalogToDelete);
-
-        verify(catalogRepository).delete(eq(catalogToDelete));
+        verify(catalogRepository).delete(eq(fakeCatalog));
         assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
     }
 

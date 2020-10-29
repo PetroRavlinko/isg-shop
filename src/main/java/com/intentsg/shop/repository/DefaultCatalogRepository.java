@@ -1,12 +1,14 @@
 package com.intentsg.shop.repository;
 
 import com.intentsg.shop.models.Catalog;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Repository
+@RequiredArgsConstructor
 public class DefaultCatalogRepository implements CatalogRepository {
     private final List<Catalog> repository = new ArrayList<>();
 
