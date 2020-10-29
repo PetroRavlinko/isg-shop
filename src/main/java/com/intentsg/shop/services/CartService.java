@@ -1,8 +1,7 @@
 package com.intentsg.shop.services;
 
 import com.intentsg.shop.model.Cart;
-
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 public interface CartService {
 

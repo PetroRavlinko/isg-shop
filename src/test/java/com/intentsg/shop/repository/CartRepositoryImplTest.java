@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CartRepositoryImplTest {
+//class CartRepositoryImplTest {
 
 //    @Test
 //    void test() {
@@ -22,4 +22,4 @@ class CartRepositoryImplTest {
 //        assertEquals(someValue, cartRepository.getCartsFromDB().stream().filter(c -> c.getId() == cartId).findFirst().orElseThrow().getSmthToUpdate());
 //    }
 
-}
+//}

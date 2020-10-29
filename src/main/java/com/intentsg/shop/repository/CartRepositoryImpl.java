@@ -1,10 +1,12 @@
 package com.intentsg.shop.repository;
 
 import com.intentsg.shop.model.Cart;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CartRepositoryImpl implements CartRepository{
     private List<Cart> cartList = new ArrayList<>();
 
