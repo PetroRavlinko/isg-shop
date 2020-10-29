@@ -13,7 +13,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = CartServiceImpl.class)
-public class CartServiceTest {
+class CartServiceTest {
 
     private static final long EXPECTED_ID = 1L;
     private static final int SOME_VALUE = 12;
@@ -55,7 +55,7 @@ public class CartServiceTest {
         cartToGet = cartService.getCart(EXPECTED_ID);
         verify(cartRepository).getCartFromDB(eq(EXPECTED_ID));
 
-        assertEquals(cartToGet.getClass(), EXPECTED_CLASS);
+        assertEquals(EXPECTED_CLASS, cartToGet.getClass());
     }
 
     @Test

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 public class CartRepositoryImpl implements CartRepository{
-    private List<Cart> cartList = new ArrayList<>();
+    private final List<Cart> cartList = new ArrayList<>();
 
     private long generatedCartId = 1;
 
@@ -36,7 +36,7 @@ public class CartRepositoryImpl implements CartRepository{
     @Override
     public Cart getCartFromDB(long id) {
         if(cartList.stream().anyMatch(i -> i.getId() == id)){
-            return cartList.get(cartList.indexOf(cartList.stream().filter(i -> i.getId() == id)));
+            return cartList.stream().filter(i -> i.getId() == id).findFirst().orElse(new Cart());
         }else{
             return new Cart();
         }
