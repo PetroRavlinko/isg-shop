@@ -37,4 +37,20 @@ class CatalogServiceTest {
         verify(catalogRepository).saveCatalog(eq(catalogToSave));
         assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
     }
+
+
+    @Test
+    void testGetCatalog() {
+        // Given
+        Catalog fakeCatalog = new Catalog();
+        fakeCatalog.setId(EXPECTED_CATALOG_ID);
+        given(catalogRepository.get(eq(EXPECTED_CATALOG_ID))).willReturn(fakeCatalog);
+
+        // When
+        Catalog actualCatalog = catalogRepository.get(EXPECTED_CATALOG_ID);
+
+        // Then
+        verify(catalogRepository).get(eq(EXPECTED_CATALOG_ID));
+        assertEquals(fakeCatalog, actualCatalog);
+    }
 }
