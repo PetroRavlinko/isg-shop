@@ -84,4 +84,8 @@ class ProductServiceTest {
         assertEquals("product2", actualProduct.getTitle());
         assertEquals(EXPECTED_CATALOG_ID, actualProduct.getId());
     }
+    @Test
+    void testProduct(){
+
+    }
 }
