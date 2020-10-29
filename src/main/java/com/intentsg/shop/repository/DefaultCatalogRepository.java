@@ -37,7 +37,7 @@ public class DefaultCatalogRepository implements CatalogRepository {
     }
 
     @Override
-    public Catalog get(Long id) {
+    public Catalog get(long id) {
         return null;
     }
 
