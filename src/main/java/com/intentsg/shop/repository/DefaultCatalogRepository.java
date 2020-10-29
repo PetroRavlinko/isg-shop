@@ -19,16 +19,25 @@ public class DefaultCatalogRepository implements CatalogRepository {
 
     @Override
     public Catalog delete(Catalog catalog) {
-        return null;
+        repository.remove(catalog);
+        if (repository.remove(catalog))
+            return catalog;
+        else
+            return null;
     }
 
     @Override
     public Catalog update(Catalog catalog) {
-        return null;
+        for (int i = 0; i < repository.size(); i++){
+            if (repository.get(i).getId() == catalog.getId()) {
+                repository.set(i, catalog);
+            }
+        }
+        return catalog;
     }
 
     @Override
-    public Catalog get(long id) {
+    public Catalog get(Long id) {
         return null;
     }
 
