@@ -18,7 +18,7 @@ public class DefaultCatalogRepository implements CatalogRepository {
     }
 
     @Override
-    public Catalog delete(Catalog catalog) {
+    public Catalog deleteCatalog(Catalog catalog) {
         if (repository.remove(catalog))
             return catalog;
         else
@@ -26,7 +26,7 @@ public class DefaultCatalogRepository implements CatalogRepository {
     }
 
     @Override
-    public Catalog update(Catalog catalog) {
+    public Catalog updateCatalog(Catalog catalog) {
         for (int i = 0; i < repository.size(); i++){
             if (repository.get(i).getId() == catalog.getId()) {
                 repository.set(i, catalog);
@@ -36,7 +36,9 @@ public class DefaultCatalogRepository implements CatalogRepository {
     }
 
     @Override
-    public Catalog get(long id) {
+    public Catalog getCatalogById(Long id) {
+        for(int i = 0; i < repository.size(); i++)
+            if(repository.get(i).getId() == id ) return repository.get(i);
         return null;
     }
 

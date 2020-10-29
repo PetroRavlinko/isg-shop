@@ -52,4 +52,39 @@ class CatalogServiceTest {
         verify(catalogRepository).get(eq(EXPECTED_CATALOG_ID));
         assertEquals(fakeCatalog, actualCatalog);
     }
+
+    @Test
+    void restDeleteCatalog() {
+        Catalog fakeCatalog = new Catalog();
+        fakeCatalog.setId(EXPECTED_CATALOG_ID);
+
+        Catalog catalogToDelete = catalogRepository.saveCatalog(fakeCatalog);
+
+        given(catalogRepository.delete(eq(catalogToDelete))).willReturn(fakeCatalog);
+
+        Catalog actualCatalog = catalogService.deleteCatalog(catalogToDelete);
+
+        verify(catalogRepository).delete(eq(catalogToDelete));
+        assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
+    }
+
+    @Test
+    void testUpdateCatalog() {
+        Catalog fakeCatalog = new Catalog();
+        fakeCatalog.setId(EXPECTED_CATALOG_ID);
+        fakeCatalog.setTitle("cat1");
+
+        Catalog catalogToUpdate = new Catalog();
+        catalogToUpdate.setId(EXPECTED_CATALOG_ID);
+        catalogToUpdate.setTitle("cat2");
+
+        given(catalogRepository.update(eq(catalogToUpdate))).willReturn(catalogToUpdate);
+
+        Catalog savedCatalog = catalogRepository.saveCatalog(fakeCatalog);
+        Catalog actualCatalog = catalogRepository.update(catalogToUpdate);
+
+        verify(catalogRepository).update(eq(catalogToUpdate));
+        assertEquals("cat2", actualCatalog.getTitle());
+        assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
+    }
 }

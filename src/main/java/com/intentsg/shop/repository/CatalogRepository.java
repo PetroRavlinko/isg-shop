@@ -4,7 +4,7 @@ import com.intentsg.shop.models.Catalog;
 
 public interface CatalogRepository {
     Catalog saveCatalog(Catalog catalog);
-    Catalog delete(Catalog catalog);
-    Catalog update(Catalog catalog);
-    Catalog get(Long id);
+    Catalog deleteCatalog(Catalog catalog);
+    Catalog updateCatalog(Catalog catalog);
+    Catalog getCatalogById(Long id);
 }

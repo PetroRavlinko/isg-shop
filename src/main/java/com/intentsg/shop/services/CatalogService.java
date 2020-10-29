@@ -15,14 +15,14 @@ public class CatalogService {
     }
 
     public Catalog deleteCatalog(Catalog catalogToDelete) {
-        return catalogRepository.delete(catalogToDelete);
+        return catalogRepository.deleteCatalog(catalogToDelete);
     }
 
     public Catalog updateCatalog(Catalog catalogToUpdate){
-        return catalogRepository.update(catalogToUpdate);
+        return catalogRepository.updateCatalog(catalogToUpdate);
     }
 
     public Catalog getCatalogById(Long id){
-        return catalogRepository.get(id);
+        return catalogRepository.getCatalogById(id);
     }
 }
