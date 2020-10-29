@@ -16,4 +16,21 @@ public class DefaultCatalogRepository implements CatalogRepository {
         repository.add(catalog);
         return catalog;
     }
+
+    @Override
+    public Catalog delete(Catalog catalog) {
+        return null;
+    }
+
+    @Override
+    public Catalog update(Catalog catalog) {
+        return null;
+    }
+
+    @Override
+    public Catalog get(long id) {
+        return null;
+    }
+
+
 }
