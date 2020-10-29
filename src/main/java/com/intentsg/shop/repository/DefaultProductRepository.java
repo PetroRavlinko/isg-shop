@@ -27,7 +27,7 @@ public class DefaultProductRepository implements ProductRepository{
     @Override
     public Product getProductById(Long id) {
         for (int i = 0 ; i < repository.size(); i++){
-            if(repository.get(i).getId() == id ){
+            if(repository.get(i).getId().equals(id)){
                 return repository.get(i);
             }
         }
@@ -37,7 +37,7 @@ public class DefaultProductRepository implements ProductRepository{
     @Override
     public Product updateProduct(Product product) {
         for(int i = 0; i < repository.size(); i++){
-            if(repository.get(i).getId() == product.getId()) {
+            if(repository.get(i).getId().equals(product.getId())) {
                 repository.set(i, product);
             }
         }
