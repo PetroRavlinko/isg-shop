@@ -1,28 +1,13 @@
 package com.intentsg.shop.services;
 
-import com.intentsg.shop.models.Product;
-import com.intentsg.shop.repository.ProductRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.intentsg.shop.model.Cart;
+import com.intentsg.shop.model.Product;
 
-@Service
-@RequiredArgsConstructor
-public class ProductService {
-    private  final ProductRepository productRepository;
+public interface ProductService {
 
-    public Product createProduct(Product productToSave){
-        return productRepository.saveProduct(productToSave);
-    }
+    Product createProduct();
+    void updateProduct(Product product);
+    void deleteProduct(Product productToDelete);
+    Product getProduct(long id);
 
-    public Product deleteProduct(Product productToDelete){
-        return productRepository.deleteProduct(productToDelete);
-    }
-
-    public Product updateProduct(Product productToUpdate){
-        return productRepository.updateProduct(productToUpdate);
-    }
-
-    public Product getProductById(Long id){
-        return productRepository.getProductById(id);
-    }
 }

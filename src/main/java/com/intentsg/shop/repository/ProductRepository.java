@@ -1,11 +1,9 @@
 package com.intentsg.shop.repository;
 
-import com.intentsg.shop.models.Product;
+import com.intentsg.shop.model.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ProductRepository {
-    Product saveProduct(Product product);
-    Product deleteProduct(Product product);
-    Product getProductById(Long id);
-    Product updateProduct(Product product);
-
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }

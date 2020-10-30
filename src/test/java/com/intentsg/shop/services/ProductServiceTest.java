@@ -1,91 +1,71 @@
 package com.intentsg.shop.services;
 
-import com.intentsg.shop.models.Product;
+import com.intentsg.shop.model.Product;
 import com.intentsg.shop.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
-@SpringBootTest(classes = ProductService.class)
+@SpringBootTest(classes = ProductServiceImpl.class)
 class ProductServiceTest {
-    private static final long EXPECTED_CATALOG_ID = 1L;
+
+    private static final long EXPECTED_ID = 1L;
+    private static final Object EXPECTED_CLASS = Product.class;
 
     @MockBean
     private ProductRepository productRepository;
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @Test
     void testCreateProduct() {
-        Product productToSave = new Product();
         Product fakeProduct = new Product();
-        fakeProduct.setId(EXPECTED_CATALOG_ID);
-        given(productRepository.saveProduct(eq(productToSave))).willReturn(fakeProduct);
+        fakeProduct.setId(EXPECTED_ID);
+        given(productRepository.save(any())).willReturn(fakeProduct);
 
-        Product actualProduct = productService.createProduct(productToSave);
+        Product actualCart = productService.createProduct();
 
-        verify(productRepository).saveProduct(eq(productToSave));
-
-        assertEquals(EXPECTED_CATALOG_ID, actualProduct.getId());
+        assertEquals(fakeProduct.getId(), actualCart.getId());
     }
 
     @Test
-    void testGetCatalog() {
-        Product fakeProduct = new Product();
-        fakeProduct.setId(EXPECTED_CATALOG_ID);
-        given(productRepository.getProductById(eq(EXPECTED_CATALOG_ID))).willReturn(fakeProduct);
-
-        Product actualProduct = productService.getProductById(EXPECTED_CATALOG_ID);
-
-        verify(productRepository).getProductById(eq(EXPECTED_CATALOG_ID));
-
-        assertEquals(fakeProduct, actualProduct);
-    }
-
-    @Test
-    void restDeleteCatalog() {
-        Product fakeProduct = new Product();
-        fakeProduct.setId(EXPECTED_CATALOG_ID);
-
-        Product productToDelete = productRepository.saveProduct(fakeProduct);
-
-        given(productRepository.deleteProduct(eq(productToDelete))).willReturn(fakeProduct);
-
-        Product actualProduct = productService.deleteProduct(productToDelete);
-
-        verify(productRepository).deleteProduct(eq(productToDelete));
-
-        assertEquals(EXPECTED_CATALOG_ID, actualProduct.getId());
-    }
-
-    @Test
-    void testUpdateCatalog() {
-        Product fakeProduct = new Product();
-        fakeProduct.setId(EXPECTED_CATALOG_ID);
-        fakeProduct.setTitle("product1");
-
+    void testUpdateProduct() {
         Product productToUpdate = new Product();
-        productToUpdate.setId(EXPECTED_CATALOG_ID);
-        productToUpdate.setTitle("product2");
 
-        given(productRepository.updateProduct(eq(productToUpdate))).willReturn(productToUpdate);
+        productService.updateProduct(productToUpdate);
 
-        Product actualProduct = productService.updateProduct(productToUpdate);
-
-        verify(productRepository).updateProduct(eq(productToUpdate));
-
-        assertEquals("product2", actualProduct.getTitle());
-        assertEquals(EXPECTED_CATALOG_ID, actualProduct.getId());
+        verify(productRepository).save(eq(productToUpdate));
     }
+
     @Test
-    void testProduct(){
+    void testGetProduct() {
+        Product productToGet;
+        Product fakeProduct = new Product();
+        given(productRepository.findById(eq(EXPECTED_ID))).willReturn(Optional.of(fakeProduct));
 
+        productToGet = productService.getProduct(EXPECTED_ID);
+        verify(productRepository).findById(eq(EXPECTED_ID));
+
+        assertEquals(EXPECTED_CLASS, productToGet.getClass());
     }
+
+    @Test
+    void testDeleteProduct() {
+        Product productToDelete = new Product();
+
+        productService.deleteProduct(productToDelete);
+
+        verify(productRepository).delete(eq(productToDelete));
+    }
+
 }
