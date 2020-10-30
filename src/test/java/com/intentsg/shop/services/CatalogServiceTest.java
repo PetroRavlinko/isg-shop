@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
@@ -24,32 +26,28 @@ class CatalogServiceTest {
 
     @Test
     void testCreateCatalog() {
-        // Given
         Catalog catalogToSave = new Catalog();
         Catalog fakeCatalog = new Catalog();
         fakeCatalog.setId(EXPECTED_CATALOG_ID);
-        given(catalogRepository.saveCatalog(eq(catalogToSave))).willReturn(fakeCatalog);
+        given(catalogRepository.save(eq(catalogToSave))).willReturn(fakeCatalog);
 
-        // When
         Catalog actualCatalog = catalogService.createCatalog(catalogToSave);
 
-        // Then
         verify(catalogRepository).saveCatalog(eq(catalogToSave));
+
         assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
     }
 
     @Test
     void testGetCatalog() {
-        // Given
         Catalog fakeCatalog = new Catalog();
         fakeCatalog.setId(EXPECTED_CATALOG_ID);
-        given(catalogRepository.get(eq(EXPECTED_CATALOG_ID))).willReturn(fakeCatalog);
+        given(catalogRepository.getCatalogById(eq(EXPECTED_CATALOG_ID))).willReturn(fakeCatalog);
 
-        // When
-        Catalog actualCatalog = catalogRepository.get(EXPECTED_CATALOG_ID);
+        Catalog actualCatalog = catalogService.getCatalogById(EXPECTED_CATALOG_ID);
 
-        // Then
-        verify(catalogRepository).get(eq(EXPECTED_CATALOG_ID));
+        verify(catalogRepository).getCatalogById(eq(EXPECTED_CATALOG_ID));
+
         assertEquals(fakeCatalog, actualCatalog);
     }
 
@@ -60,28 +58,25 @@ class CatalogServiceTest {
 
         given(catalogRepository.deleteCatalog(eq(fakeCatalog))).willReturn(fakeCatalog);
 
-        Catalog actualCatalog = catalogService.delete(fakeCatalog);
+        Catalog actualCatalog = catalogService.deleteCatalog(fakeCatalog);
 
-        verify(catalogRepository).delete(eq(fakeCatalog));
+        verify(catalogRepository).deleteCatalog(eq(fakeCatalog));
+
         assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
     }
 
     @Test
     void testUpdateCatalog() {
-        Catalog fakeCatalog = new Catalog();
-        fakeCatalog.setId(EXPECTED_CATALOG_ID);
-        fakeCatalog.setTitle("cat1");
-
         Catalog catalogToUpdate = new Catalog();
         catalogToUpdate.setId(EXPECTED_CATALOG_ID);
         catalogToUpdate.setTitle("cat2");
 
-        given(catalogRepository.update(eq(catalogToUpdate))).willReturn(catalogToUpdate);
+        given(catalogRepository.updateCatalog(eq(catalogToUpdate))).willReturn(catalogToUpdate);
 
-        Catalog savedCatalog = catalogRepository.saveCatalog(fakeCatalog);
-        Catalog actualCatalog = catalogRepository.update(catalogToUpdate);
+        Catalog actualCatalog = catalogService.updateCatalog(catalogToUpdate);
 
-        verify(catalogRepository).update(eq(catalogToUpdate));
+        verify(catalogRepository).updateCatalog(eq(catalogToUpdate));
+
         assertEquals("cat2", actualCatalog.getTitle());
         assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
     }

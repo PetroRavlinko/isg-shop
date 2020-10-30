@@ -11,18 +11,14 @@ public class CatalogService {
     private final CatalogRepository catalogRepository;
 
     public Catalog createCatalog(Catalog catalogToSave) {
-        return catalogRepository.saveCatalog(catalogToSave);
+        return catalogRepository.save(catalogToSave);
     }
 
-    public Catalog deleteCatalog(Catalog catalogToDelete) {
-        return catalogRepository.deleteCatalog(catalogToDelete);
-    }
-
-    public Catalog updateCatalog(Catalog catalogToUpdate){
-        return catalogRepository.updateCatalog(catalogToUpdate);
+    public void deleteCatalog(Catalog catalogToDelete) {
+        catalogRepository.delete(catalogToDelete);
     }
 
     public Catalog getCatalogById(Long id){
-        return catalogRepository.getCatalogById(id);
+        return catalogRepository.findById(id).get();
     }
 }
