@@ -10,6 +10,6 @@ class CatalogRepositoryTest {
 
     @Test
     void whenFindById_thenReturnCart() {
-        assertEquals(1, 1);
+        assertEquals(new Integer(1), new Integer(1));
     }
 }

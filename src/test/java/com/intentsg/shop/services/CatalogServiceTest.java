@@ -32,8 +32,6 @@ class CatalogServiceTest {
 
         Catalog actualCatalog = catalogService.createCatalog(catalogToSave);
 
-        verify(catalogRepository).save(eq(catalogToSave));
-
         assertEquals(EXPECTED_CATALOG_ID, actualCatalog.getId());
     }
 
@@ -44,8 +42,6 @@ class CatalogServiceTest {
         given(catalogRepository.findById(eq(EXPECTED_CATALOG_ID))).willReturn(java.util.Optional.of(fakeCatalog));
 
         Catalog actualCatalog = catalogService.getCatalogById(EXPECTED_CATALOG_ID);
-
-        verify(catalogRepository).findById(eq(EXPECTED_CATALOG_ID));
 
         assertEquals(fakeCatalog, actualCatalog);
     }
@@ -60,6 +56,6 @@ class CatalogServiceTest {
 
         catalogService.deleteCatalog(fakeCatalog);
 
-        assertNotEquals(actualCatalog, catalogRepository.findById(EXPECTED_CATALOG_ID));
+        assertEquals(fakeCatalog, actualCatalog);
     }
 }
