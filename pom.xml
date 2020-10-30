@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.intentsg</groupId>
 	<artifactId>shop</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>shop</name>
 	<description>Demo project for Spring Boot</description>
 
