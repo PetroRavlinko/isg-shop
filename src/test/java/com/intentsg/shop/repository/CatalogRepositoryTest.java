@@ -1,5 +1,6 @@
 package com.intentsg.shop.repository;
 
+import com.intentsg.shop.models.Catalog;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
@@ -10,6 +11,7 @@ class CatalogRepositoryTest {
 
     @Test
     void whenFindById_thenReturnCart() {
-        assertEquals(new Integer(1), new Integer(1));
+        Catalog catalog = new Catalog();
+        assertEquals(catalog, catalog);
     }
 }

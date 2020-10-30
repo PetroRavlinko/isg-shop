@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = CatalogService.class)
 class CatalogServiceTest {
@@ -39,7 +40,7 @@ class CatalogServiceTest {
     void testGetCatalog() {
         Catalog fakeCatalog = new Catalog();
         fakeCatalog.setId(EXPECTED_CATALOG_ID);
-        given(catalogRepository.findById(eq(EXPECTED_CATALOG_ID))).willReturn(java.util.Optional.of(fakeCatalog));
+        given(catalogRepository.findById(eq(EXPECTED_CATALOG_ID))).willReturn(Optional.of(fakeCatalog));
 
         Catalog actualCatalog = catalogService.getCatalogById(EXPECTED_CATALOG_ID);
 
