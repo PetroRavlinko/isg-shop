@@ -6,11 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = CartServiceImpl.class)
 class CartServiceTest {
@@ -27,14 +30,13 @@ class CartServiceTest {
 
     @Test
     void testCreateCart() {
-        Cart cartToSave = new Cart();
         Cart fakeCart = new Cart();
         fakeCart.setId(EXPECTED_ID);
-        given(cartRepository.createCartAtDB(eq(cartToSave))).willReturn(fakeCart);
+        given(cartRepository.save(any())).willReturn(fakeCart);
 
         Cart actualCart = cartService.createCart();
 
-        assertEquals(EXPECTED_ID, actualCart.getId());
+        assertEquals(fakeCart.getId(), actualCart.getId());
     }
 
     @Test
@@ -43,17 +45,17 @@ class CartServiceTest {
 
         cartService.updateCart(cartToUpdate, SOME_VALUE);
 
-        verify(cartRepository).updateCartAtDB(eq(cartToUpdate), eq(SOME_VALUE));
+        verify(cartRepository).save(eq(cartToUpdate));
     }
 
     @Test
     void testGetCart() {
         Cart cartToGet;
         Cart fakeCart = new Cart();
-        given(cartRepository.getCartFromDB(eq(EXPECTED_ID))).willReturn(fakeCart);
+        given(cartRepository.findById(eq(EXPECTED_ID))).willReturn(Optional.of(fakeCart));
 
         cartToGet = cartService.getCart(EXPECTED_ID);
-        verify(cartRepository).getCartFromDB(eq(EXPECTED_ID));
+        verify(cartRepository).findById(eq(EXPECTED_ID));
 
         assertEquals(EXPECTED_CLASS, cartToGet.getClass());
     }
@@ -64,7 +66,7 @@ class CartServiceTest {
 
         cartService.deleteCart(cartToDelete);
 
-        verify(cartRepository).deleteFromDB(eq(cartToDelete));
+        verify(cartRepository).delete(eq(cartToDelete));
     }
 
 }
