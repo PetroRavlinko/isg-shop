@@ -5,6 +5,8 @@ import com.intentsg.shop.repository.CatalogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CatalogService {
@@ -19,6 +21,6 @@ public class CatalogService {
     }
 
     public Catalog getCatalogById(Long id){
-        return catalogRepository.findById(id).get();
+        return catalogRepository.findById(id).orElseThrow();
     }
 }
