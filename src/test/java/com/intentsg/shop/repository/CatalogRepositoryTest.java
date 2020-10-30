@@ -12,6 +12,7 @@ class CatalogRepositoryTest {
     @Test
     void whenFindById_thenReturnCart() {
         Catalog catalog = new Catalog();
-        assertEquals(catalog, catalog);
+        Catalog catalog2 = catalog;
+        assertEquals(catalog, catalog2);
     }
 }
