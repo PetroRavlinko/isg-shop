@@ -1,10 +1,9 @@
 package com.intentsg.shop.repository;
 
 import com.intentsg.shop.models.Catalog;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface CatalogRepository {
-    Catalog saveCatalog(Catalog catalog);
-    Catalog deleteCatalog(Catalog catalog);
-    Catalog updateCatalog(Catalog catalog);
-    Catalog getCatalogById(Long id);
+@Repository
+public interface CatalogRepository extends CrudRepository<Catalog, Long> {
 }
