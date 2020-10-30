@@ -9,13 +9,13 @@
 	</parent>
 	<groupId>com.intentsg</groupId>
 	<artifactId>shop</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6-SNAPSHOT</version>
 	<name>shop</name>
 	<description>Demo project for Spring Boot</description>
 
     <scm>
         <developerConnection>scm:git:https://github.com/PetroRavlinko/isg-shop.git</developerConnection>
-        <tag>shop-0.0.5</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
