@@ -32,11 +32,4 @@ public class CatalogController {
         model.addAttribute( ATTRIBUTE, catalogService.getCatalogById( newCatalog.getId() ) );
         return ATTRIBUTE;
     }
-
-//    @DeleteMapping
-//    public void deleteCatalog(@PathParam( "id" ) Long id, Model model){
-//        Catalog catalogToDelete = catalogService.getCatalogById(id);
-//        catalogService.deleteCatalog(catalogToDelete);
-//    }
-//
 }

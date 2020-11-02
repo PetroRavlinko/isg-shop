@@ -37,8 +37,12 @@ class CatalogControllerIntegrationTest {
 
     @Test
     void whenCreateCatalog_thenRerurn200() throws Exception {
+        // Given
         Catalog catalog = new Catalog();
+
         given( catalogService.createCatalog( catalog ) ).willReturn( catalog );
+
+        // When
         mockMvc.perform( post( "/catalog" ) )
                 .andDo( print() ).andExpect( status().is( 400 ) );
     }
