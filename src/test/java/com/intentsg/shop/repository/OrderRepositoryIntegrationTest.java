@@ -17,6 +17,7 @@ public class OrderRepositoryIntegrationTest {
         Order order = new Order();
         Order order1 = order;
 
+        
         assertEquals(order, order1);
 
     }
