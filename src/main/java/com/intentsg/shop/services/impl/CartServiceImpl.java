@@ -15,9 +15,8 @@ import javax.annotation.PostConstruct;
 @Service
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
-    private Cart currentCart;
-
     private final CartRepository cartRepository;
+    private Cart currentCart;
 
     @PostConstruct
     public void initiate() {

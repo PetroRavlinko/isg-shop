@@ -2,7 +2,6 @@ package com.intentsg.shop.services.impl;
 
 import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.repository.CatalogRepository;
-import com.intentsg.shop.services.impl.CatalogService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 
-@SpringBootTest(classes = CatalogService.class)
+@SpringBootTest(classes = CatalogServiceImpl.class)
 class CatalogServiceTest {
     private static final long EXPECTED_CATALOG_ID = 1L;
 
@@ -22,7 +21,7 @@ class CatalogServiceTest {
     private CatalogRepository catalogRepository;
 
     @Autowired
-    private CatalogService catalogService;
+    private CatalogServiceImpl catalogService;
 
     @Test
     void testCreateCatalog() {
