@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
-public class OrderRepositoryIntegrationTest {
+class OrderRepositoryIntegrationTest {
 
     @Test
     void whenFindById_thenReturnOrder() {
@@ -17,7 +17,7 @@ public class OrderRepositoryIntegrationTest {
         Order order = new Order();
         Order order1 = order;
 
-        
+
         assertEquals(order, order1);
 
     }

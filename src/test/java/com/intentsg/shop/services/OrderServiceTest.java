@@ -17,7 +17,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = OrderServiceImpl.class)
-public class OrderServiceTest {
+class OrderServiceTest {
     private static final long EXPECTED_ID = 1L;
     private static final int SOME_VALUE = 2;
     private static final Object EXPECTED_CLASS = Order.class;

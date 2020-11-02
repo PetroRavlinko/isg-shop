@@ -6,7 +6,7 @@ public interface OrderService {
 
     Order createOrder();
     void updateOrder(Order order, int newSomeValue);
-    void deleteOrder(Order OrderToDelete);
+    void deleteOrder(Order orderToDelete);
     Order getOrder(long id);
 
 }
