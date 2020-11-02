@@ -16,7 +16,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
-@SpringBootTest(classes = CartServiceImpl.class)
+@SpringBootTest(classes = OrderServiceImpl.class)
 public class OrderServiceTest {
     private static final long EXPECTED_ID = 1L;
     private static final int SOME_VALUE = 2;

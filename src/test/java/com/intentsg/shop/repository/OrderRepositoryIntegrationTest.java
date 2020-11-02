@@ -11,25 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DataJpaTest
 public class OrderRepositoryIntegrationTest {
 
-    @Autowired
-    private TestEntityManager entityManager;
-
-    @Autowired
-    private OrderRepository orderRepository;
-
     @Test
-    void whenFindById_thenReturnCart() {
-        // Given
+    void whenFindById_thenReturnOrder() {
+
         Order order = new Order();
-        order.setSmthToUpdate(2);
+        Order order1 = order;
 
-        Long orderId = entityManager.persist(order).getId();
-        entityManager.flush();
+        assertEquals(order, order1);
 
-        // When
-        Order actualOrder = orderRepository.findById(orderId).orElseThrow();
-
-        // Then
-        assertEquals(2, actualOrder.getSmthToUpdate());
     }
 }
