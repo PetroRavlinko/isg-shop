@@ -29,7 +29,7 @@ class OrderServiceTest {
     private OrderServiceImpl orderService;
 
     @Test
-    void testCreateCart() {
+    void testCreateOrder() {
         Order fakeOrder = new Order();
         fakeOrder.setId(EXPECTED_ID);
         given(orderRepository.save(any())).willReturn(fakeOrder);
@@ -40,7 +40,7 @@ class OrderServiceTest {
     }
 
     @Test
-    void testUpdateCart() {
+    void testUpdateOrder() {
         Order orderToUpdate = new Order();
 
         orderService.updateOrder(orderToUpdate, SOME_VALUE);
@@ -49,7 +49,7 @@ class OrderServiceTest {
     }
 
     @Test
-    void testGetCart() {
+    void testGetOrder() {
         Order orderToGet;
         Order fakeOrder = new Order();
         given(orderRepository.findById(eq(EXPECTED_ID))).willReturn(Optional.of(fakeOrder));
@@ -61,7 +61,7 @@ class OrderServiceTest {
     }
 
     @Test
-    void testDeleteCart() {
+    void testDeleteOrder() {
         Order orderToDelete = new Order();
 
         orderService.deleteOrder(orderToDelete);
