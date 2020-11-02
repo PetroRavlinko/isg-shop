@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,6 +33,12 @@ class CatalogControllerIntegrationTest {
 
         // When
         mockMvc.perform(get("/catalog?id=1")).andDo(print()).andExpect(status().isOk());
+    }
+
+    @Test
+    void whenCreateCatalog_thenRerurn200() throws Exception {
+        mockMvc.perform( post( "/catalog" ) )
+                .andDo( print() ).andExpect( status().is( 400 ) );
     }
 }
 
