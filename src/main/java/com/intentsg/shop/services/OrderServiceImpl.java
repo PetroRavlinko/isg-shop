@@ -1,6 +1,6 @@
 package com.intentsg.shop.services;
 
-import com.intentsg.shop.models.Order;
+import com.intentsg.shop.model.Orders;
 import com.intentsg.shop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,23 +11,23 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
     @Override
-    public Order createOrder() {
-        return orderRepository.save(new Order());
+    public Orders createOrder() {
+        return orderRepository.save(new Orders());
     }
 
     @Override
-    public void updateOrder(Order order, int newSomeValue) {
-        order.setSmthToUpdate(newSomeValue);
-        orderRepository.save(order);
+    public void updateOrder(Orders orders, int newSomeValue) {
+        orders.setSmthToUpdate(newSomeValue);
+        orderRepository.save(orders);
     }
 
     @Override
-    public void deleteOrder(Order orderToDelete) {
-        orderRepository.delete(orderToDelete);
+    public void deleteOrder(Orders ordersToDelete) {
+        orderRepository.delete(ordersToDelete);
     }
 
     @Override
-    public Order getOrder(long id) {
+    public Orders getOrder(long id) {
         return orderRepository.findById(id).orElseThrow();
     }
 }

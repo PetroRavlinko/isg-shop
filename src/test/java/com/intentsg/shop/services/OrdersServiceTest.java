@@ -1,7 +1,7 @@
 package com.intentsg.shop.services;
 
 
-import com.intentsg.shop.models.Order;
+import com.intentsg.shop.model.Orders;
 import com.intentsg.shop.repository.OrderRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,10 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(classes = OrderServiceImpl.class)
-class OrderServiceTest {
+class OrdersServiceTest {
     private static final long EXPECTED_ID = 1L;
     private static final int SOME_VALUE = 2;
-    private static final Object EXPECTED_CLASS = Order.class;
+    private static final Object EXPECTED_CLASS = Orders.class;
 
     @MockBean
     private OrderRepository orderRepository;
@@ -30,42 +30,42 @@ class OrderServiceTest {
 
     @Test
     void testCreateOrder() {
-        Order fakeOrder = new Order();
-        fakeOrder.setId(EXPECTED_ID);
-        given(orderRepository.save(any())).willReturn(fakeOrder);
+        Orders fakeOrders = new Orders();
+        fakeOrders.setId(EXPECTED_ID);
+        given(orderRepository.save(any())).willReturn(fakeOrders);
 
-        Order actualOrder = orderService.createOrder();
+        Orders actualOrders = orderService.createOrder();
 
-        assertEquals(fakeOrder.getId(), actualOrder.getId());
+        assertEquals(fakeOrders.getId(), actualOrders.getId());
     }
 
     @Test
     void testUpdateOrder() {
-        Order orderToUpdate = new Order();
+        Orders ordersToUpdate = new Orders();
 
-        orderService.updateOrder(orderToUpdate, SOME_VALUE);
+        orderService.updateOrder(ordersToUpdate, SOME_VALUE);
 
-        verify(orderRepository).save(eq(orderToUpdate));
+        verify(orderRepository).save(eq(ordersToUpdate));
     }
 
     @Test
     void testGetOrder() {
-        Order orderToGet;
-        Order fakeOrder = new Order();
-        given(orderRepository.findById(eq(EXPECTED_ID))).willReturn(Optional.of(fakeOrder));
+        Orders ordersToGet;
+        Orders fakeOrders = new Orders();
+        given(orderRepository.findById(eq(EXPECTED_ID))).willReturn(Optional.of(fakeOrders));
 
-        orderToGet = orderService.getOrder(EXPECTED_ID);
+        ordersToGet = orderService.getOrder(EXPECTED_ID);
         verify(orderRepository).findById(eq(EXPECTED_ID));
 
-        assertEquals(EXPECTED_CLASS, orderToGet.getClass());
+        assertEquals(EXPECTED_CLASS, ordersToGet.getClass());
     }
 
     @Test
     void testDeleteOrder() {
-        Order orderToDelete = new Order();
+        Orders ordersToDelete = new Orders();
 
-        orderService.deleteOrder(orderToDelete);
+        orderService.deleteOrder(ordersToDelete);
 
-        verify(orderRepository).delete(eq(orderToDelete));
+        verify(orderRepository).delete(eq(ordersToDelete));
     }
 }

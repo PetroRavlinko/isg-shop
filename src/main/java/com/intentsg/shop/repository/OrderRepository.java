@@ -1,9 +1,9 @@
 package com.intentsg.shop.repository;
 
-import com.intentsg.shop.models.Order;
-import org.springframework.data.repository.CrudRepository;
+import com.intentsg.shop.model.Orders;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderRepository extends CrudRepository<Order, Long> {
+public interface OrderRepository extends JpaRepository<Orders, Long> {
 }
