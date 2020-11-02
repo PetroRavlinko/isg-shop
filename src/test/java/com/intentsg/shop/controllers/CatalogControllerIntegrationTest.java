@@ -26,7 +26,7 @@ class CatalogControllerIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
-    void whenGetCatalog_returnCatalogPage() throws Exception {
+    void whenGetCatalog_returnStatus200() throws Exception {
         // Given
         given(catalogService.getCatalogById(1L)).willReturn(new Catalog());
 

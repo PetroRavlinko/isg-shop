@@ -3,12 +3,8 @@ package com.intentsg.shop.services.impl;
 import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.repository.CatalogRepository;
 import com.intentsg.shop.services.CatalogService;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.WebApplicationContext;
 
-@Scope( value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.INTERFACES )
 @Service
 public class CatalogServiceImpl implements CatalogService {
     private final CatalogRepository catalogRepository;
