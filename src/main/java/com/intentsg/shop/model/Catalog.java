@@ -1,4 +1,4 @@
-package com.intentsg.shop.models;
+package com.intentsg.shop.model;
 
 import lombok.Getter;
 import lombok.Setter;

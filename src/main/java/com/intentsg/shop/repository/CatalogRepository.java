@@ -1,6 +1,6 @@
 package com.intentsg.shop.repository;
 
-import com.intentsg.shop.models.Catalog;
+import com.intentsg.shop.model.Catalog;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
