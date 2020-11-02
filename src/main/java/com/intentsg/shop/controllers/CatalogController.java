@@ -1,6 +1,6 @@
 package com.intentsg.shop.controllers;
 
-import com.intentsg.shop.DTO.CatalogDTO;
+import com.intentsg.shop.dto.CatalogDTO;
 import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +32,4 @@ public class CatalogController {
         model.addAttribute( ATTRIBUTE, catalogService.getCatalogById( newCatalog.getId() ) );
         return ATTRIBUTE;
     }
-
-    @DeleteMapping
-    public void deleteCatalog(@PathParam( "id" ) Long id, Model model){
-        Catalog catalogToDelete = catalogService.getCatalogById(id);
-        catalogService.deleteCatalog(catalogToDelete);
-    }
-
 }

@@ -1,4 +1,4 @@
-package com.intentsg.shop.DTO;
+package com.intentsg.shop.dto;
 
 import lombok.Data;
 
