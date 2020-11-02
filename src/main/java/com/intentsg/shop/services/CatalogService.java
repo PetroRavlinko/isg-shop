@@ -6,5 +6,4 @@ public interface CatalogService {
     Catalog createCatalog(Catalog newCatalog);
     void deleteCatalog(Catalog catalog);
     Catalog getCatalogById(Long id);
-    Catalog getCurrentCatalog();
 }

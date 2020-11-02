@@ -9,24 +9,11 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.annotation.PostConstruct;
-
 @Scope( value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.INTERFACES )
 @Service
 @RequiredArgsConstructor
 public class CatalogServiceImpl implements CatalogService {
     private final CatalogRepository catalogRepository;
-    private Catalog currentCatalog;
-
-    @PostConstruct
-    public void initiate() {
-        this.currentCatalog = this.createCatalog( new Catalog() );
-    }
-
-    @Override
-    public Catalog getCurrentCatalog() {
-        return this.currentCatalog;
-    }
 
     @Override
     public Catalog createCatalog( Catalog catalogToSave ) {
