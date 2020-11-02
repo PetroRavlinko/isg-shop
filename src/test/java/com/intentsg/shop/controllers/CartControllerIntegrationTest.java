@@ -2,7 +2,6 @@ package com.intentsg.shop.controllers;
 
 import com.intentsg.shop.model.Cart;
 import com.intentsg.shop.services.CartService;
-import com.intentsg.shop.services.CatalogService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,13 +13,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
+@WebMvcTest(controllers = CartController.class)
 class CartControllerIntegrationTest {
 
     @MockBean
     private CartService cartService;
-    @MockBean
-    private CatalogService catalogService;
 
     @Autowired
     private MockMvc mockMvc;

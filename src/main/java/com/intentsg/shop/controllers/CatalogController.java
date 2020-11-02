@@ -1,25 +1,39 @@
 package com.intentsg.shop.controllers;
 
+import com.intentsg.shop.dto.CatalogDTO;
+import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 
 @Controller
 @RequestMapping("/catalog")
 public class CatalogController {
-    private static final String ATTRIBUTE = "catalog";
 
     @Autowired
     private CatalogService catalogService;
 
     @GetMapping
-    public String getCatalog(@PathParam( "id" ) Long id, Model model) {
-        model.addAttribute(ATTRIBUTE, catalogService.getCatalogById(id));
-        return ATTRIBUTE;
+    public ResponseEntity<Catalog> getCatalog( @PathParam( "id" ) Long id) {
+        return new ResponseEntity<>( catalogService.getCatalogById( id ), HttpStatus.OK );
+    }
+
+    @PostMapping
+    public ResponseEntity<Catalog> createCatalog( @RequestBody CatalogDTO catalogDTO ){
+        Catalog catalog = new Catalog();
+        catalog.setTitle( catalogDTO.getTitle() );
+        return new ResponseEntity<>( catalogService.createCatalog( catalog ), HttpStatus.CREATED );
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Catalog> deleteCatalogById(@PathParam( "id" ) Long id) {
+        Catalog catalog = catalogService.getCatalogById( id );
+        catalogService.deleteCatalog( catalog );
+        return new ResponseEntity<>( catalog, HttpStatus.OK );
     }
 }

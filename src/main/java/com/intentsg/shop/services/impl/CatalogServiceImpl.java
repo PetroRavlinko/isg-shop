@@ -3,13 +3,13 @@ package com.intentsg.shop.services.impl;
 import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.repository.CatalogRepository;
 import com.intentsg.shop.services.CatalogService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CatalogServiceImpl implements CatalogService {
     private final CatalogRepository catalogRepository;
-
-    public CatalogServiceImpl( CatalogRepository catalogRepository ) {this.catalogRepository = catalogRepository;}
 
     @Override
     public Catalog createCatalog( Catalog catalogToSave ) {
