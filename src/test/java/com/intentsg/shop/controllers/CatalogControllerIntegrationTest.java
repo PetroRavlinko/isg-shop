@@ -1,6 +1,5 @@
 package com.intentsg.shop.controllers;
 
-import com.intentsg.shop.model.Cart;
 import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.services.CartService;
 import com.intentsg.shop.services.CatalogService;
@@ -20,6 +19,8 @@ class CatalogControllerIntegrationTest {
 
     @MockBean
     private CatalogService catalogService;
+    @MockBean
+    private CartService cartService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -27,9 +28,7 @@ class CatalogControllerIntegrationTest {
     @Test
     void whenGetCatalog_returnCatalogPage() throws Exception {
         // Given
-        Catalog fakeCatalog = new Catalog();
-        fakeCatalog.setId(1L);
-        given(catalogService.createCatalog(fakeCatalog)).willReturn(new Catalog());
+        given(catalogService.getCatalogById(1L)).willReturn(new Catalog());
 
         // When
         mockMvc.perform(get("/catalog?id=1")).andDo(print()).andExpect(status().isOk());

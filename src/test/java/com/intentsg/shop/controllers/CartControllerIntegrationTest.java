@@ -2,6 +2,7 @@ package com.intentsg.shop.controllers;
 
 import com.intentsg.shop.model.Cart;
 import com.intentsg.shop.services.CartService;
+import com.intentsg.shop.services.CatalogService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -18,6 +19,8 @@ class CartControllerIntegrationTest {
 
     @MockBean
     private CartService cartService;
+    @MockBean
+    private CatalogService catalogService;
 
     @Autowired
     private MockMvc mockMvc;

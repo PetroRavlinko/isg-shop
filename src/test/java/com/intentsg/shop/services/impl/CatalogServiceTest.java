@@ -2,6 +2,7 @@ package com.intentsg.shop.services.impl;
 
 import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.repository.CatalogRepository;
+import com.intentsg.shop.services.CatalogService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +22,7 @@ class CatalogServiceTest {
     private CatalogRepository catalogRepository;
 
     @Autowired
-    private CatalogServiceImpl catalogService;
+    private CatalogService catalogService;
 
     @Test
     void testCreateCatalog() {
