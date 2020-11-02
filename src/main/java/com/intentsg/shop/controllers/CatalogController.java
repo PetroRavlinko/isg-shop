@@ -1,12 +1,11 @@
 package com.intentsg.shop.controllers;
 
-import com.intentsg.shop.dto.CatalogDTO;
-import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.websocket.server.PathParam;
 
@@ -21,15 +20,6 @@ public class CatalogController {
     @GetMapping
     public String getCatalog(@PathParam( "id" ) Long id, Model model) {
         model.addAttribute(ATTRIBUTE, catalogService.getCatalogById(id));
-        return ATTRIBUTE;
-    }
-
-    @PostMapping
-    public String createCatalog( @RequestBody CatalogDTO catalogDTO, Model model ){
-        Catalog newCatalog = new Catalog();
-        newCatalog.setTitle( catalogDTO.getTitle() );
-        catalogService.createCatalog( newCatalog );
-        model.addAttribute( ATTRIBUTE, catalogService.getCatalogById( newCatalog.getId() ) );
         return ATTRIBUTE;
     }
 }
