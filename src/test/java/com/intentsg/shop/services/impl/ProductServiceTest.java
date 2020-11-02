@@ -1,7 +1,8 @@
-package com.intentsg.shop.services;
+package com.intentsg.shop.services.impl;
 
 import com.intentsg.shop.model.Product;
 import com.intentsg.shop.repository.ProductRepository;
+import com.intentsg.shop.services.impl.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

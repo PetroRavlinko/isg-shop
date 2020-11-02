@@ -1,6 +1,6 @@
 package com.intentsg.shop.repository;
 
-import com.intentsg.shop.models.Catalog;
+import com.intentsg.shop.model.Catalog;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 

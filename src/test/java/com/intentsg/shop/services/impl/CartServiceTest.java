@@ -1,7 +1,8 @@
-package com.intentsg.shop.services;
+package com.intentsg.shop.services.impl;
 
 import com.intentsg.shop.model.Cart;
 import com.intentsg.shop.repository.CartRepository;
+import com.intentsg.shop.services.CartService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +27,7 @@ class CartServiceTest {
     private CartRepository cartRepository;
 
     @Autowired
-    private CartServiceImpl cartService;
+    private CartService cartService;
 
     @Test
     void testCreateCart() {

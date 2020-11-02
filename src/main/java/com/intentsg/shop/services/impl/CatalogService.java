@@ -1,6 +1,6 @@
-package com.intentsg.shop.services;
+package com.intentsg.shop.services.impl;
 
-import com.intentsg.shop.models.Catalog;
+import com.intentsg.shop.model.Catalog;
 import com.intentsg.shop.repository.CatalogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
