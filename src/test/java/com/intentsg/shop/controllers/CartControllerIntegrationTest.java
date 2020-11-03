@@ -24,27 +24,7 @@ class CartControllerIntegrationTest {
     private CartService cartService;
 
     @Autowired
-    private CartController cartController;
-
-
-    @Autowired
     private MockMvc mockMvc;
-
-    private List<Cart> cartList;
-
-    @BeforeEach
-    void SetUp() {
-        this.cartList = new ArrayList<>();
-        Cart cart1 = new Cart();
-        Cart cart2 = new Cart();
-        Cart cart3 = new Cart();
-        cart1.setId(1L);
-        cart2.setId(2L);
-        cart3.setId(3L);
-        this.cartList.add(cart1);
-        this.cartList.add(cart2);
-        this.cartList.add(cart3);
-    }
 
     private static final long FAKE_ID = 1L;
     private static final int FAKE_VALUE = 4543;
@@ -83,15 +63,14 @@ class CartControllerIntegrationTest {
     }
 
     @Test
-    public void whenPutNoParamToUpdate_thenBadRequest() throws Exception {
+    void whenPutNoParamToUpdate_thenBadRequest() throws Exception {
 
         mockMvc.perform(put("/cart"))
                 .andExpect(status().isBadRequest());
     }
 
-
     @Test
-    public void whenDelete_thenReturnStatusRedirect() throws Exception {
+    void whenDelete_thenReturnStatusRedirect() throws Exception {
         Cart fakeCart = new Cart();
         fakeCart.setId(FAKE_ID);
 
