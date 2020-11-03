@@ -64,9 +64,7 @@ class CartServiceTest {
     @Test
     void testDeleteCart() {
         Cart cartToDelete = new Cart();
-
         cartService.deleteCart(cartToDelete);
-
         verify(cartRepository).delete(eq(cartToDelete));
     }
 

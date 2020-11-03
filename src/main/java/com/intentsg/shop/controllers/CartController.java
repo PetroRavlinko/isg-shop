@@ -1,10 +1,8 @@
 package com.intentsg.shop.controllers;
 
-import com.intentsg.shop.dto.CartDTO;
 import com.intentsg.shop.model.Cart;
 import com.intentsg.shop.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,20 +30,19 @@ public class CartController {
         return "newCart";
     }
 
-    @PutMapping("/cart")
-    public void updateCart(@RequestParam Long id,
-                             @RequestParam int newValue) {
+    @PutMapping("/cart/{id}/{newValue}")
+    public String updateCart(@PathVariable("id") Long id,
+                             @PathVariable("newValue") int newValue) {
         Cart cartToUpdate = cartService.getCart(id);
         cartService.updateCart(cartToUpdate, newValue);
+        return "redirect:cart";
     }
 
-    @DeleteMapping("/cart")
-    public String deleteCart(@RequestParam Long id) {
+    @DeleteMapping("/cart/{cartId}")
+    public String deleteCart(@PathVariable("cartId") Long id) {
         Cart cartToDelete = cartService.getCart(id);
         cartService.deleteCart(cartToDelete);
-        return "cart";
+        return "redirect:newCart";
     }
-
-
 
 }
