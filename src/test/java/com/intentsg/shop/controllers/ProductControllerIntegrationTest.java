@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
+@WebMvcTest(controllers = ProductController.class)
 class ProductControllerIntegrationTest {
 
     @MockBean
@@ -48,7 +48,7 @@ class ProductControllerIntegrationTest {
         // Given
         Product product = new Product();
         product.setTitle("s");
-        given(productService.createProduct())
+        given(productService.createProduct( product ))
                 .willReturn(product);
 
         // When

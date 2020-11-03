@@ -9,4 +9,5 @@ import lombok.ToString;
 @ToString
 public class ProductDto {
     private String title;
+    private Long id;
 }

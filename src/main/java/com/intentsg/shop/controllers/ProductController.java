@@ -3,53 +3,44 @@ package com.intentsg.shop.controllers;
 import com.intentsg.shop.dto.ProductDto;
 import com.intentsg.shop.model.Product;
 import com.intentsg.shop.services.ProductService;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
 @Controller
+@RequestMapping("/products")
 public class ProductController {
+
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/products")
-    public String getProduct(Model model) {
-        model.addAttribute("product", productService.getCurrentProduct());
-        return "product";
+    @GetMapping
+    public ResponseEntity<Product> getProduct( @PathParam( "id" ) Long id) {
+        return new ResponseEntity<>( productService.getProduct( id ), HttpStatus.OK );
     }
 
-    @GetMapping("/products/{id}")
-    public String getProductById(Model model, @PathVariable Long id) {
-        model.addAttribute("product", productService.getProduct(id));
-        return "product";
+    @PostMapping
+    public ResponseEntity<Product> createProduct( @RequestBody ProductDto productDto ){
+        Product product = new Product();
+        product.setTitle( productDto.getTitle() );
+        return new ResponseEntity<>( productService.createProduct( product ), HttpStatus.CREATED );
     }
 
-    @PostMapping("/products")
-    public String createProduct(Model model, @RequestBody ProductDto  productDto) {
-        Product product = productService.createProduct();
-        product.setTitle(productDto.getTitle());
-        productService.updateProduct(product);
-        model.addAttribute("product", product);
-        return "product";
+    @DeleteMapping
+    public ResponseEntity<Product> deleteProductById(@PathParam( "id" ) Long id) {
+        Product product = productService.getProduct( id );
+        productService.deleteProduct( product );
+        return new ResponseEntity<>( product, HttpStatus.OK );
     }
-
-    @DeleteMapping("/products/{id}")
-    public String deleteProduct(Model model, @PathVariable  Long id) {
-        Product product = productService.getProduct(id);
-        model.addAttribute("product", product);
-        productService.deleteProduct(productService.getProduct(id));
-        return "product";
+    @PutMapping
+    public ResponseEntity<Product> updateProduct(@RequestBody ProductDto productDto ){
+        Product product = new Product();
+        product.setTitle( productDto.getTitle() );
+        product.setId(productDto.getId());
+        return new ResponseEntity<>( productService.createProduct( product ), HttpStatus.CREATED );
     }
-
-    @PutMapping("/products/{id}")
-    public String updateProduct(Model model, @RequestBody ProductDto  productDto, @PathVariable  Long id) {
-        Product product = productService.getProduct(id);
-        product.setTitle(productDto.getTitle());
-        productService.updateProduct(product);
-        model.addAttribute("product", product);
-        return "product";
-    }
-
 }
