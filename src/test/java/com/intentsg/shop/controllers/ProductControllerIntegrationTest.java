@@ -1,6 +1,5 @@
 package com.intentsg.shop.controllers;
 
-import com.intentsg.shop.model.Product;
 import com.intentsg.shop.services.CartService;
 import com.intentsg.shop.services.ProductService;
 import org.junit.jupiter.api.Test;
@@ -9,9 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,38 +26,39 @@ class ProductControllerIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
-    void whenGetProduct_returnProductPage() throws Exception {
-        // Given
-        Product product = new Product();
-        product.setTitle("s");
-        given(productService.getCurrentProduct())
-                .willReturn(product);
-
-        // When
-        mockMvc.perform(get("/products"))
+    void whenGetProductById_returnProductPage() throws Exception {
+        mockMvc.perform(get("/products?id=1"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.model().attribute("product", product));
+                .andExpect(status().isOk());
     }
 
     @Test
     void whenCreateProduct_returnCreatedProduct() throws Exception {
-        // Given
-        Product product = new Product();
-        product.setTitle("s");
-        given(productService.createProduct( product ))
-                .willReturn(product);
-
-        // When
         mockMvc.perform(post("/products")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "    \"title\" : \"elem\"\n" +
                         "}"))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.model()
-                        .attribute("product", product));
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    void whenDeleteProduct_returnDeletedProduct() throws Exception{
+        mockMvc.perform( delete("/products?id=1"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void whenUpdateProduct_returnUpdatedProduct() throws Exception{
+        mockMvc.perform(put("/products")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\n" +
+                        "    \"title\" : \"elem\"\n" +
+                        "}"))
+                .andDo(print())
+                .andExpect(status().isCreated());
     }
 
 
