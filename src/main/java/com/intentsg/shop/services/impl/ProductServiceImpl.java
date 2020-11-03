@@ -35,14 +35,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void updateProduct(Product product){
-        productRepository.save(product);
-    }
+    public void updateProduct(Product product){ productRepository.save(product); }
 
     @Override
-    public void deleteProduct(Product productToDelete) {
-        productRepository.delete(productToDelete);
-    }
+    public void deleteProduct(Product productToDelete) { productRepository.delete(productToDelete); }
 
     @Override
     public Product getProduct(long id) {

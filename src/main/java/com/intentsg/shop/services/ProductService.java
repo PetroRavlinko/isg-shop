@@ -1,6 +1,5 @@
 package com.intentsg.shop.services;
 
-import com.intentsg.shop.model.Cart;
 import com.intentsg.shop.model.Product;
 
 public interface ProductService {
