@@ -23,20 +23,27 @@ class CatalogControllerIntegrationTest {
 
     @Test
     void whenGetCatalog_returnStatus200() throws Exception {
-        mockMvc.perform(get("/catalog?id=1")).andDo(print()).andExpect(status().isOk());
+        mockMvc.perform(get("/catalogs?id=1")).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
     void whenCreateCatalog_returnStatus201() throws Exception {
-        mockMvc.perform( post( "/catalog" )
+        mockMvc.perform( post( "/catalogs" )
                 .content( "{\"title\": \"some title\"}" )
                 .contentType( MediaType.APPLICATION_JSON ))
                 .andDo( print() ).andExpect( status().isCreated() );
     }
 
     @Test
-    void whenDeleteCatalog_rerurnStatus200() throws Exception {
-        mockMvc.perform( delete( "/catalog?id=1" ) ).andDo( print() ).andExpect( status().isOk() );
+    void whenDeleteCatalog_returnStatus200() throws Exception {
+        mockMvc.perform( delete( "/catalogs?id=1" ) ).andDo( print() ).andExpect( status().isOk() );
+    }
+    @Test
+    void whenUpdateCatalog_returnStatus200() throws Exception {
+        mockMvc.perform( put( "/catalogs" )
+                .content( "{\"id\": \"2\"},{\"title\": \"some title\"}" )
+                .contentType( MediaType.APPLICATION_JSON ))
+                .andDo( print() ).andExpect( status().isCreated() );
     }
 }
 

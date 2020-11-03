@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.websocket.server.PathParam;
 
 @Controller
-@RequestMapping("/catalog")
+@RequestMapping("/catalogs")
 public class CatalogController {
 
     @Autowired
@@ -35,5 +35,12 @@ public class CatalogController {
         Catalog catalog = catalogService.getCatalogById( id );
         catalogService.deleteCatalog( catalog );
         return new ResponseEntity<>( catalog, HttpStatus.OK );
+    }
+    @PutMapping
+    public ResponseEntity<Catalog> updateCatalog(@RequestBody CatalogDTO catalogDTO ){
+        Catalog catalog = new Catalog();
+        catalog.setTitle( catalogDTO.getTitle() );
+        catalog.setId(catalogDTO.getId());
+        return new ResponseEntity<>( catalogService.createCatalog( catalog ), HttpStatus.CREATED );
     }
 }
