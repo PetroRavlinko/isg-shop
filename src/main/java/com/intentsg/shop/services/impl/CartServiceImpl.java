@@ -11,13 +11,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.annotation.PostConstruct;
 
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.INTERFACES)
+//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.INTERFACES)
 @Service
 @RequiredArgsConstructor
 public class CartServiceImpl implements CartService {
-    private Cart currentCart;
-
     private final CartRepository cartRepository;
+    private Cart currentCart;
 
     @PostConstruct
     public void initiate() {
