@@ -26,14 +26,14 @@ class ProductControllerIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
-    void whenGetProductById_returnProductPage() throws Exception {
+    void whenGetProductById_returnStatusOk() throws Exception {
         mockMvc.perform(get("/products?id=1"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
-    void whenCreateProduct_returnCreatedProduct() throws Exception {
+    void whenCreateProduct_returnStatusCreated() throws Exception {
         mockMvc.perform(post("/products")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
@@ -44,14 +44,14 @@ class ProductControllerIntegrationTest {
     }
 
     @Test
-    void whenDeleteProduct_returnDeletedProduct() throws Exception{
+    void whenDeleteProduct_returnStatusOk() throws Exception{
         mockMvc.perform( delete("/products?id=1"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
-    void whenUpdateProduct_returnUpdatedProduct() throws Exception{
+    void whenUpdateProduct_returnStatusCreated() throws Exception{
         mockMvc.perform(put("/products")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +
