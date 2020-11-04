@@ -34,7 +34,7 @@ class ProductServiceTest {
         fakeProduct.setId(EXPECTED_ID);
         given(productRepository.save(any())).willReturn(fakeProduct);
 
-        Product actualCart = productService.createProduct();
+        Product actualCart = productService.createProduct(fakeProduct);
 
         assertEquals(fakeProduct.getId(), actualCart.getId());
     }

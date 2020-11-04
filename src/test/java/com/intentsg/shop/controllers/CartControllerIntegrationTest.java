@@ -25,9 +25,12 @@ class CartControllerIntegrationTest {
     @Test
     void whenGetCart_returnCartPage() throws Exception {
         // Given
-        given(cartService.getCurrentCart()).willReturn(new Cart());
+        given(cartService.getCurrentCart())
+                .willReturn(new Cart());
 
         // When
-        mockMvc.perform(get("/cart")).andDo(print()).andExpect(status().isOk());
+        mockMvc.perform(get("/cart"))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 }

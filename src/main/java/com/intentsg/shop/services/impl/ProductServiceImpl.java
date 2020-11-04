@@ -6,25 +6,36 @@ import com.intentsg.shop.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
+import javax.annotation.PostConstruct;
+
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
+    private Product currentProduct;
 
-    @Override
-    public Product createProduct() {
-        return productRepository.save(new Product());
+    @PostConstruct
+    public void initiate() {
+        this.currentProduct = this.createProduct(new Product());
     }
 
     @Override
-    public void updateProduct(Product product){
-        productRepository.save(product);
+    public Product createProduct(Product product) {
+        return productRepository.save( product );
     }
 
     @Override
-    public void deleteProduct(Product productToDelete) {
-        productRepository.delete(productToDelete);
+    public Product getCurrentProduct() {
+        return this.currentProduct;
     }
+
+    @Override
+    public void updateProduct(Product product){ productRepository.save(product); }
+
+    @Override
+    public void deleteProduct(Product productToDelete) { productRepository.delete(productToDelete); }
 
     @Override
     public Product getProduct(long id) {
