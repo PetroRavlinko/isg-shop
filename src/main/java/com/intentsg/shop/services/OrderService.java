@@ -1,12 +1,13 @@
 package com.intentsg.shop.services;
 
-import com.intentsg.shop.model.Orders;
+import com.intentsg.shop.model.Order;
 
 public interface OrderService {
 
-    Orders createOrder();
-    void updateOrder(Orders orders, int newSomeValue);
-    void deleteOrder(Orders ordersToDelete);
-    Orders getOrder(long id);
+    Order getCurrentOrder();
+    Order createOrder();
+    void updateOrder(Order order, int newSomeValue);
+    void deleteOrder(Order orderToDelete);
+    Order getOrder(long id);
 
 }
