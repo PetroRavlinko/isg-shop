@@ -33,7 +33,7 @@ class CartControllerRestIntegrationTest {
 
         given(cartService.getCurrentCart()).willReturn(fakeCart);
 
-        mockMvc.perform(get("/cartRest"))
+        mockMvc.perform(get("/cartsRest"))
                         .andExpect(status().isOk());
     }
 
@@ -45,7 +45,7 @@ class CartControllerRestIntegrationTest {
 
         given(cartService.getCart(fakeCart.getId())).willReturn(fakeCart);
 
-        mockMvc.perform(get("/cartRest/{cartId}", fakeCart.getId()))
+        mockMvc.perform(get("/cartsRest/{cartId}", fakeCart.getId()))
                 .andExpect(status().isOk());
     }
 
@@ -53,7 +53,7 @@ class CartControllerRestIntegrationTest {
     void shouldReturnStatusCreated_afterCartCreating() throws Exception{
         given(cartService.createCart()).willReturn(new Cart());
 
-        mockMvc.perform(post("/cartRest"))
+        mockMvc.perform(post("/cartsRest"))
                 .andExpect(status().isCreated());
     }
 
@@ -66,7 +66,7 @@ class CartControllerRestIntegrationTest {
         Cart cartToUpdate = cartService.getCart(FAKE_ID);
         doNothing().when(cartService).updateCart(cartToUpdate, FAKE_VALUE);
 
-        mockMvc.perform(put("/cartRest/{id}/{newValue}", FAKE_ID, FAKE_VALUE))
+        mockMvc.perform(put("/cartsRest/{id}/{newValue}", FAKE_ID, FAKE_VALUE))
                 .andExpect(status().isOk());
     }
 
@@ -79,7 +79,7 @@ class CartControllerRestIntegrationTest {
         Cart cartToDelete = cartService.getCart(FAKE_ID);
         doNothing().when(cartService).deleteCart(cartToDelete);
 
-        mockMvc.perform(delete("/cartRest/{cartId}", FAKE_ID))
+        mockMvc.perform(delete("/cartsRest/{cartId}", FAKE_ID))
                 .andExpect(status().isOk());
     }
 
