@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -50,7 +51,7 @@ class OrderRestControllerIntegrationTest {
 
     @Test
     void shouldReturnStatusCreated_afterOrderCreating() throws Exception{
-        given(orderService.createOrder()).willReturn(new Order());
+        given(orderService.createOrder(any())).willReturn(new Order());
 
         mockMvc.perform(post("/orders"))
                 .andExpect(status().isCreated());
@@ -63,9 +64,9 @@ class OrderRestControllerIntegrationTest {
 
         given(orderService.getOrder(FAKE_ID)).willReturn(myOrder);
         Order orderToUpdate = orderService.getOrder(FAKE_ID);
-        doNothing().when(orderService).updateOrder(orderToUpdate, FAKE_VALUE);
+        doNothing().when(orderService).updateOrder(orderToUpdate);
 
-        mockMvc.perform(put("/orders/{id}/{newValue}", FAKE_ID, FAKE_VALUE))
+        mockMvc.perform(put("/orders/{orderId}", FAKE_ID))
                 .andExpect(status().isOk());
     }
 

@@ -1,4 +1,4 @@
-package com.intentsg.shop.services;
+package com.intentsg.shop.services.impl;
 
 
 import com.intentsg.shop.model.Order;
@@ -34,16 +34,16 @@ class OrderServiceTest {
         fakeOrder.setId(EXPECTED_ID);
         given(orderRepository.save(any())).willReturn(fakeOrder);
 
-        Order actualOrder = orderService.createOrder();
+        Order actualOrder = orderService.createOrder(new Order());
 
-        assertEquals(fakeOrder.getId(), actualOrder.getId());
+        assertEquals(EXPECTED_ID, actualOrder.getId());
     }
 
     @Test
     void testUpdateOrder() {
         Order orderToUpdate = new Order();
 
-        orderService.updateOrder(orderToUpdate, SOME_VALUE);
+        orderService.updateOrder(orderToUpdate);
 
         verify(orderRepository).save(orderToUpdate);
     }

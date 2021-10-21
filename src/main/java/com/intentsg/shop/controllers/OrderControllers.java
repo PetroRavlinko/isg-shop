@@ -26,7 +26,7 @@ public class OrderControllers {
 
     @PostMapping("/order")
     public String createOrder(Model model) {
-        model.addAttribute("newOrder", orderService.createOrder());
+        model.addAttribute("newOrder", orderService.createOrder(new Order()));
         return "newOrder";
     }
 
@@ -34,7 +34,7 @@ public class OrderControllers {
     public String updateOrder(@PathVariable("id") Long id,
                              @PathVariable("newValue") int newValue) {
         Order orderToUpdate = orderService.getOrder(id);
-        orderService.updateOrder(orderToUpdate, newValue);
+        orderService.updateOrder(orderToUpdate);
         return "redirect:order";
     }
 

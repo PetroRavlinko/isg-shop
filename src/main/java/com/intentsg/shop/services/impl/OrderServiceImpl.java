@@ -1,5 +1,9 @@
 package com.intentsg.shop.services.impl;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import com.intentsg.shop.model.Order;
 import com.intentsg.shop.repository.OrderRepository;
 import com.intentsg.shop.services.OrderService;
@@ -21,14 +25,17 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Order createOrder() {
-        return orderRepository.save(new Order());
+    public Order createOrder(Order order) {
+        return orderRepository.save(order);
     }
 
+    @Transactional
     @Override
-    public void updateOrder(Order order, int newSomeValue) {
-        order.setSmthToUpdate(newSomeValue);
-        orderRepository.save(order);
+    public void updateOrder(Order sourceOrder) {
+        Order originOrder = orderRepository.findById(sourceOrder.getId()).orElseThrow();
+        originOrder.setCustomer(sourceOrder.getCustomer());
+        originOrder.setSmthToUpdate(sourceOrder.getSmthToUpdate());
+        orderRepository.save(originOrder);
     }
 
     @Override
@@ -39,5 +46,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order getOrder(long id) {
         return orderRepository.findById(id).orElseThrow();
+    }
+
+
+    @Override
+    public List<Order> getAll() {
+        return orderRepository.findAll();
     }
 }
